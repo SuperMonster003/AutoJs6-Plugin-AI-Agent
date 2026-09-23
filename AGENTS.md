@@ -26,7 +26,7 @@
 | INFO 服务 | `AiAgentPluginInfoService`, action `org.autojs.plugin.INFO`, category `ai-agent` |
 | 启动器入口 | `ui.LauncherActivity` (`MAIN` / `LAUNCHER`, 主进程) |
 | 专用 API | `ai-agent-api` (宿主 `plugin-api/ai-agent-api`, AIDL 包 `org.autojs.plugin.ai.agent.api`) 与共享能力契约 `host-capability-api` (宿主 `plugin-api/host-capability-api`, 路线图 D33); 路线图 P1.1 落地后以 AAR 形式进入 `libs/` |
-| 最低宿主 versionCode | `AiAgentPlugin.REQUIRED_HOST_VERSION` = 5286 (AutoJs6 6.8.0, P3.1 附加脚本目录配置的宿主校验与恢复) |
+| 最低宿主 versionCode | `AiAgentPlugin.REQUIRED_HOST_VERSION` = 5287 (AutoJs6 6.8.0, P3.3 登记脚本结果与按调用停止) |
 | 平台版本插件 | `io.github.supermonster003.autojs6-platform-versions` 1.8.3 |
 | 发布文件名 | `autojs6-plugin-ai-agent-v{VERSION_NAME}-{CRC32}.apk` (单 APK) |
 
