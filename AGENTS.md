@@ -8,7 +8,7 @@
 - 用户在当前任务中的明确要求优先于本文件.
 - 本仓库不包含原生库, 模型, 上游源码快照或 ABI 拆分, 参考规范中对应的 CONDITIONAL 条款不适用 (见第 5.4 节的省略理由).
 - 本仓库会拥有运行在插件进程的 Agent 循环 (路线图 P2), 独立任务台与设置页 (P6), 悬浮球与系统入口 (P6.7), 这些条款以 CONDITIONAL 形式保留在第 9 节与第 14 节.
-- 插件不联网 (更新检查在 P6.6 落地前不申请 INTERNET), 不申请无障碍, 不持有模型凭据: 模型调用与设备操作一律经宿主代理 (路线图 D3 / D4).
+- 插件仅在用户手动检查发行版本时访问固定的 GitHub Releases API (P6.6), 不申请无障碍, 不持有模型凭据: 模型调用与设备操作一律经宿主代理 (路线图 D3 / D4).
 
 ## 2. 仓库身份
 
@@ -195,7 +195,7 @@ AutoJs6-Plugin-AI-Agent/
 - README, 插件中心说明 (`raw*/plugin_instruction.md`) 与 changelog MUST 由 `.readme/*.json`, `.changelog/*.json` 与模板通过 `.python/generate_markdown.py` 生成; 生成产物不得手工编辑.
 - 修改 JSON 或模板后先运行 `py .python/generate_markdown.py`, 再运行 `py .python/generate_markdown.py --check` (CI `markdown.yml` 也会执行). 生成器校验语言集合, JSON 键与列表形状, 全角符号, 未替换占位符, 版本对齐, 孤儿产物与漂移.
 - 根 `README.md` 是简体中文版本, 与 `.readme/README-zh-Hans.md` 同源; 语言导航必须出现 `简体中文`.
-- README 先说明用户能完成什么, 再说明安装与使用; 不写 Android Studio 或 IntelliJ IDEA 版本信息, 不向普通用户解释 `supportedAbis`, 签名过程等实现细节. README 与插件说明 MUST 如实标明当前阶段 (开发预览, P5 脚本 API 与 P6.1-P6.5 任务台/历史/预设/记忆/确认承接已接通, 其余界面仍按 P6.6-P6.7 继续).
+- README 先说明用户能完成什么, 再说明安装与使用; 不写 Android Studio 或 IntelliJ IDEA 版本信息, 不向普通用户解释 `supportedAbis`, 签名过程等实现细节. README 与插件说明 MUST 如实标明当前阶段 (开发预览, P5 脚本 API, P6.1-P6.5 任务界面与 P6.6 设置/发行历史/手动更新已接通; 悬浮入口及其开关/权限随原 P6.7 联验, P7/P8 尚未通过).
 - README 链接必须指向本仓库的真实 release, issue, license 与生成 changelog.
 
 ## 13. Changelog
@@ -254,7 +254,7 @@ Release 前额外执行 `.\gradlew.bat :app:appendDigestToReleasedFiles`, 检查
 
 - 根目录 `LICENSE` 为 Mozilla Public License 2.0, README 徽章与源码头保持一致.
 - `android:allowBackup="false"` 与 `data_extraction_rules.xml` 全量排除保持不变; 任务历史, 预设与记忆只在插件私有存储.
-- 不记录目标文本, 提示词, 模型输出, 节点树, 屏幕文字, 脚本参数 / 结果或私有路径到普通日志; 插件自身不联网, 一切模型流量在宿主.
+- 不记录目标文本, 提示词, 模型输出, 节点树, 屏幕文字, 脚本参数 / 结果或私有路径到普通日志; 更新检查只获取公开发行信息, 不发送上述任务数据, 一切模型流量在宿主.
 - 第三方代码与 AAR 必须记录来源, 版本, 校验值与许可证 (`THIRD_PARTY_NOTICES.md`); 引入运行时依赖时同一提交更新该文件.
 
 ## 19. 完成检查清单
