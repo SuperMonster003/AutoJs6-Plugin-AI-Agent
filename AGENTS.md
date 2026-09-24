@@ -195,7 +195,7 @@ AutoJs6-Plugin-AI-Agent/
 - README, 插件中心说明 (`raw*/plugin_instruction.md`) 与 changelog MUST 由 `.readme/*.json`, `.changelog/*.json` 与模板通过 `.python/generate_markdown.py` 生成; 生成产物不得手工编辑.
 - 修改 JSON 或模板后先运行 `py .python/generate_markdown.py`, 再运行 `py .python/generate_markdown.py --check` (CI `markdown.yml` 也会执行). 生成器校验语言集合, JSON 键与列表形状, 全角符号, 未替换占位符, 版本对齐, 孤儿产物与漂移.
 - 根 `README.md` 是简体中文版本, 与 `.readme/README-zh-Hans.md` 同源; 语言导航必须出现 `简体中文`.
-- README 先说明用户能完成什么, 再说明安装与使用; 不写 Android Studio 或 IntelliJ IDEA 版本信息, 不向普通用户解释 `supportedAbis`, 签名过程等实现细节. README 与插件说明 MUST 如实标明当前阶段 (开发预览, P5 脚本 API 与 P6.1-P6.3 任务台/历史/预设已接通, 记忆及其他界面仍按 P6.4-P6.7 继续).
+- README 先说明用户能完成什么, 再说明安装与使用; 不写 Android Studio 或 IntelliJ IDEA 版本信息, 不向普通用户解释 `supportedAbis`, 签名过程等实现细节. README 与插件说明 MUST 如实标明当前阶段 (开发预览, P5 脚本 API 与 P6.1-P6.4 任务台/历史/预设/记忆已接通, 其余界面仍按 P6.5-P6.7 继续).
 - README 链接必须指向本仓库的真实 release, issue, license 与生成 changelog.
 
 ## 13. Changelog
