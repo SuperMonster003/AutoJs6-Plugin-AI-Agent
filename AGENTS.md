@@ -85,6 +85,7 @@ AutoJs6-Plugin-AI-Agent/
 |   `-- src/{main,test,androidTest}
 |-- build-logic/                org.autojs.build.{utils,versions,signs,jvm-convention,...} 约定插件
 |-- docs/dev/                   阶段证据与开发笔记 (按需, 例如 P0.2 的 spike 证据)
+|-- test-apps/fake-host/         仅 debug/testOnly 的独立假宿主 APK, 只装入一次性 AVD
 |-- gradle/                     libs.versions.toml, wrapper/
 |-- libs/                       宿主 API AAR (哈希锁定, 见 libs/README.md)
 |-- locks/                      host-api-aars.lock
@@ -228,6 +229,7 @@ AutoJs6-Plugin-AI-Agent/
 - `AiAgentPluginContractTest` MUST 覆盖: Wake Activity 契约, launcher 唯一入口, INFO 服务发现与真实 `getInfo()` 往返 (包版本, 本地化描述, ID / engine / variant, 显式空 `supportedAbis`, `REQUIRES_HOST_VERSION`), `AiAgentPluginService` 发现, `:agent` 进程, 显式绑定与 Binder descriptor.
 - 路线图 P2.5 起还 MUST 覆盖: 真实 `IAiAgentPlugin` 的 `getInfo` / `getCapabilities` 能力键, 非宿主调用 `attach` 得到 `SecurityException`, 假代理下的 attach -> startRun -> 事件 -> detach 往返, 宿主 death 时任务转入 `blocked`.
 - 宿主仓库的假插件 (`test-apps:ai-agent-conformance`, P7) 是宿主契约变更时的往返证据, 宿主契约变更时 MUST 重跑.
+- 本仓库 `test-apps:fake-host` 使用真实宿主包名检验现有身份校验, 禁止装到真机或覆盖真实 AutoJs6. 使用独立数据目录的一次性 `AI_Agent_Conformance_*` AVD 和模块的 `run_conformance.py`, 验证 attach / grant 拒绝 / 真实代理进程 death; 不给生产代码增加身份绕过.
 - 有设备或模拟器时执行 `:app:connectedDebugAndroidTest`; E4 级真实任务验收 (D32) 与正确性测试分开记录.
 
 ## 16. CI 基线
